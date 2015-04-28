@@ -1,0 +1,26 @@
+import:
+	from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice, MonkeyImage
+	from com.android.monkeyrunner.easy import EasyMonkeyDevice, By
+
+device connection:
+       device = MonkeyRunner.waitForConnection()
+
+define&run package & launcher activity:
+       package = 'com.android.vending'
+       activity = 'com.android.vending.AssetBrowserActivity'
+       runComponent = package + '/' + activity
+       device.startActivity(runComponent)
+
+key press example:
+       device.press('KEYCODE_MENU', MonkeyDevice.DOWN_AND_UP)
+    
+
+screenshot:
+	result = device.takeSnapshot()
+	rsult.writeToFile('path/filename.png','png')
+
+type in a box example:
+        wantedAppName = list("busybox")
+	for letter in wantedAppName:
+	    device.type(letter)
+	    MonkeyRunner.sleep(0.5)
